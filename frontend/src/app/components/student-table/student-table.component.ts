@@ -21,11 +21,11 @@ export class StudentTableComponent implements OnInit {
     this.getStudentData();
   }
 
-  addNewStudent(): void{
+  addNewStudent(){
     this.router.navigate(['addStudent'])
   }
 
-  editStudent(id: number): void{
+  editStudent(id){
     const navigationExtras: NavigationExtras = {
       state: {
         id : id
@@ -34,7 +34,7 @@ export class StudentTableComponent implements OnInit {
     this.router.navigate(['editStudent'], navigationExtras )
   }
 
-  getStudentData(): void{
+  getStudentData(){
     this.service.getStudentData().subscribe((response)=>{
       this.studentData = Object.keys(response).map((key) => [response[key]]);
     },(error)=>{
@@ -42,7 +42,7 @@ export class StudentTableComponent implements OnInit {
     })
   }
 
-  deleteStudent(itemid:number): void{
+  deleteStudent(itemid){
     const student = {
       id: itemid
     }
@@ -51,7 +51,7 @@ export class StudentTableComponent implements OnInit {
     })
   }
 
-  search(value): void {
+  search(value) {
     let foundItems = [];
     if (value.length <= 0) {
       this.getStudentData();
