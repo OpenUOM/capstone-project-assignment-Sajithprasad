@@ -52,9 +52,20 @@ export class TeacherTableComponent implements OnInit {
     })
   }
 
-  search(value) {
+search(value) {
+  this.service.getTeacherData().subscribe((response) => {
+    this.teacherData = Object.keys(response).map((key) => [response[key]]);
 
-  }
+    if (value) {
+      this.teacherData = this.teacherData.filter((teacher) =>
+        teacher[0].name.toLowerCase().includes(value.toLowerCase())
+      );
+    }
+  }, (error) => {
+    console.log('ERROR - ', error)
+  })
+}
+
 
   deleteTeacher(itemid) {
     const test = {
