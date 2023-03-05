@@ -34,14 +34,6 @@ export class TeacherTableComponent implements OnInit {
     this.router.navigate(['editTeacher'], navigationExtras)
   }
 
-  initializeDB(){
-    this.service.initializeDB().subscribe((response) => {
-      console.log('DB is Initialized')
-    }, (error) => {
-      console.log('ERROR - ', error)
-    })
-  }
-
   getTeacherData() {
     this.selected = 'Teachers';
     this.service.getTeacherData().subscribe((response) => {
@@ -61,17 +53,7 @@ export class TeacherTableComponent implements OnInit {
   }
 
   search(value) {
-    let foundItems = [];
-    if (value.length <= 0) {
-      this.getTeacherData();
-    } else {
-      let b = this.teacherData.filter((teacher: { name: string; }[]) => {
-        if (teacher[0].name.toLowerCase().indexOf(value) > -1) {
-          foundItems.push(teacher)
-        }
-      });
-      this.teacherData = foundItems;
-    }
+
   }
 
   deleteTeacher(itemid) {
